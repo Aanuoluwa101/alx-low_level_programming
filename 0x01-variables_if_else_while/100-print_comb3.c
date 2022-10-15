@@ -10,25 +10,16 @@
 int main(void)
 {
 	int a;
+	int b;
 
-	for (a = 48; a <= 58; a++)
+	for (a = 48; a < 58; a++)
 	{
-		if (a > 57)
-		{
-			putchar('\n');
-		}
-		else
+		for (b = 48; b < 58; b++)
 		{
 			putchar(a);
-			if (a == 57)
-			{
-				continue;
-			}
-			else
-			{
-				putchar(44);
-				putchar(32);
-			}
+			putchar(b);
+			putchar(44);
+			putchar(32);
 		}
 	}
 
