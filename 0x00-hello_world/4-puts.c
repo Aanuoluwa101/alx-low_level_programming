@@ -1,14 +1,9 @@
 #include <stdio.h>
 
 /**
- * This is a program that prints a certain string
- * followed by a newline, using puts()
- */
-
-
-/**
- * main - prints a certain string with a newline after
- * returns 0 if print is successful, otherwise returns 1
+ * main - serves as the entry point for the program
+ *
+ * Return: 0 if no error occurs. otherwise return
  */
 
 int main(void)

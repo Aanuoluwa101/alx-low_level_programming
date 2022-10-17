@@ -11,16 +11,36 @@ int main(void)
 {
 	int a;
 	int b;
+	int stop = 9;
+	int start = 1;
+	int a_start = 48;
+	int b_start = 49;
 
-	for (a = 48; a < 58; a++)
+	while (stop >= 1)
 	{
-		for (b = 48; b < 58; b++)
+		a = a_start;
+		b = b_start;
+
+		while (start <= stop)
 		{
 			putchar(a);
 			putchar(b);
-			putchar(44);
-			putchar(32);
+			if (start == 1 && stop == 1)
+			{
+				putchar('\n');
+			}
+			else
+			{
+				putchar(44);
+				putchar(32);
+			}
+			start++;
+			b++;
 		}
+		a_start++;
+		b_start++;
+		stop--;
+		start = 1;
 	}
 
 	return (0);

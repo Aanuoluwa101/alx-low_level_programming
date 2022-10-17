@@ -1,12 +1,13 @@
 #include <stdio.h>
 
 /**
- * This is a program that prints a certain string
- * followed by a newline, using printf()
+ * main - serves as the entry point of the program
+ *
+ * Return: 0 if no error occurs. Otherwise, return non-zero values
  */
 
 int main(void)
 {
 	printf("with proper grammar, but the outcome is a piece of art,\n");
-	return(0);
+	return (0);
 }
