@@ -2,8 +2,9 @@
 
 int main(void)
 {
-	int array[5] = {1, 2, 3, 4, 5};
+	int array[1] = {98};
 
-	print_array(array, 3);
+	print_array(array, 0);
+	print_array(array, -1);
 	return (0);
 }

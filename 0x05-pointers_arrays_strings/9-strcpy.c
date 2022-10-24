@@ -29,12 +29,12 @@ char *_strcpy(char *dest, char *src)
 {
 	int len = _strlen(src);
 	int n;
-	static char **ptr;
+	static char *ptr;
 
 	for (n = 0; n <= len; n++)
 		*(dest + n) = *(src + n);
 
-	ptr = &dest;
+	ptr = &*dest;
 	return (ptr);
 }
 
