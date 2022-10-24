@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
-* _puts2 -  prints every other character of a string
+* puts2 -  prints every other character of a string
 * starting with the first character
 * @str: the string to be printed
 * Return:
 */
 
-void _puts(char *str)
+void puts2(char *str)
 {
 	int n;
 
