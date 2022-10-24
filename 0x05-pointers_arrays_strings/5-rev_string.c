@@ -27,13 +27,28 @@ int _strlen(char *s)
 void rev_string(char *s)
 {
 	int len;
-	char new_s[];
-	int n;
+	int i;
+	int j;
+	int j_stop;
+	int z;
 
-	for (len = _strlen(s), n = 0; (len > 0) && (n < (_strlen(s))); len--, n++)
-		new_s[n] = *(s + (len - 1));
+	len = _strlen(s);
+	i = 0;
+	j = len - 1;
 
-	s = new_s;
-	_putchar('\n');
+	if (len % 2 == 0)
+		j_stop = len / 2;
+	else
+		j_stop = len / 2 + 1;
+
+	while (i <= (len / 2) - 1 && j >= j_stop)
+	{
+		z = *(s + i);
+		*(s + i) = *(s + j);
+		*(s + j) = z;
+		i++;
+		j--;
+	}
+
 }
 
