@@ -20,8 +20,9 @@ void puts2(char *str)
 			_putchar(*(str + n));
 			n += 2;
 		}
-		else
+		else if (*(str + (n + 1)) == '\\' && *(str + (n + 2)) == '0')
 		{
+			_putchar(*(str + n));
 			break;
 		}
 	}
