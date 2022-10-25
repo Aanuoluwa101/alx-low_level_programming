@@ -12,13 +12,18 @@ void print_array(int *a, int n)
 {
 	int pos;
 
-	for (pos = 0; pos <= n; pos++)
+	if (n <= 0)
 	{
-		if (pos == n - 1)
-			printf("%d\n", *(a + pos));
-		else if (pos == n)
-			printf("%d\n", *(a + pos));
-		else
-			printf("%d, ", *(a + pos));
+		printf("\n");
+	}
+	else
+	{
+		for (pos = 0; pos < n; pos++)
+		{
+			if (pos == n - 1)
+				printf("%d\n", *(a + pos));
+			else
+				printf("%d, ", *(a + pos));
+		}
 	}
 }
