@@ -5,3 +5,6 @@ char *_strchr(char *s, char c);
 int _strlen(char *s);
 unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *accept);
+void print_chessboard(char (*a)[8]);
+
+

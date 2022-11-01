@@ -30,7 +30,8 @@ char *_strstr(char *haystack, char *needle)
 				for (j = i, k = 0; k < s_len && j < n_len; j++, k++)
 					if (haystack[j] != needle[k])
 						break;
-			return (&haystack[i]);
+				if (k == n_len)
+					return (&haystack[i]);
 			}
 		}
 	}
