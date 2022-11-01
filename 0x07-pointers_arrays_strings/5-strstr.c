@@ -21,6 +21,9 @@ char *_strstr(char *haystack, char *needle)
 	n_len = _strlen(needle);
 	n = needle[0];
 
+	if (!_strlen(needle))
+		return (*&haystack);
+
 	for (i = 0; haystack[i]; i++)
 	{
 		if (haystack[i] == n)
