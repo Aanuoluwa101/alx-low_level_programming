@@ -14,14 +14,13 @@
 
 int main(int argc, char *argv[])
 {
-	int pos;
 	int cents;
 	int coin;
-	int coins[5] = {25, 10, 5, 2, 1};
+	int coins[];
 
 	coin = 0;
-	if (argc == 2)
-		cents = atoi(argv[1]);
+	cents = atoi(argv[1]);
+	coins = {25, 10, 5, 2 ,1};
 
 	if (argc != 2)
 	{
@@ -42,3 +41,19 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+
+
+int change(int cents, int pos)
+{
+	int coin;
+	int coints[5];
+
+	coins = {25, 10, 5, 2, 1};
+	coin = coints[pos];
+
+	if (cents == 0)
+		return (0);
+	if (cents == 1)
+		return (1);
+	return (cents / coin + change(cents % coin, pos + 1));
+}
