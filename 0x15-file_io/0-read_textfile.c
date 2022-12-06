@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "main.h"
 
 /**
  * read_textfile - reads a text file and
@@ -16,26 +12,36 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, ch, num, count;
-	char c;
+	int fd, c_write, c_read;
+	char *buf;
 
-	if (filename == NULL)
+	if (!filename)
 		return (0);
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	num = letters;
-	count = 0;
-	ch = read(fd, &c, 1);
-	while (ch != -1 && ch != 0 && num > 0)
+
+	buf = malloc(sizeof(char) * letters);
+	if (!buf)
 	{
-		count++;
-		num--;
-		write(STDOUT_FILENO, &c, 1);
-		ch = read(fd, &c, 1);
+		close(fd);
+		return (0);
+	}
+
+	c_read = read(fd, buf, letters);
+	if (c_read == -1)
+	{
+		close(fd);
+		return (0);
+	}
+	c_write = write(STDOUT_FILENO, buf, c_read);
+	if (c_write == -1 || c_write < c_read)
+	{
+		close(fd);
+		return (0);
 	}
 	close(fd);
-	return (count);
+	return (c_write);
 }
 
