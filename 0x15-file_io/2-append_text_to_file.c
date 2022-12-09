@@ -22,9 +22,9 @@ int append_text_to_file(const char *filename, char *text_content)
 
 	if (text_content)
 	{
-		nletters = 0;
-		while (text_content[nletters])
-			nletters++;
+
+		for (nletters = 0; text_content[nletters]; nletters++)
+			;
 
 		nwr = write(fd, text_content, nletters);
 
