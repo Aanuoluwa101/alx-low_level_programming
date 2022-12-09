@@ -20,22 +20,19 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (fd == -1)
 		return (-1);
 
-	if (!text_content)
+	if (text_content)
 	{
-		close(fd);
-		return (1);
-	}
+		nletters = 0;
+		while (text_content[nletters])
+			nletters++;
 
-	nletters = 0;
-	while (text_content[nletters])
-		nletters++;
+		nwr = write(fd, text_content, nletters);
 
-	nwr = write(fd, text_content, nletters);
-
-	if (nwr == -1)
-	{
-		close(fd);
-		return (-1);
+		if (nwr == -1)
+		{
+			close(fd);
+			return (-1);
+		}
 	}
 
 	close(fd);
