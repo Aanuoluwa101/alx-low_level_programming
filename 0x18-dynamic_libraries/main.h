@@ -1,3 +1,7 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+
 int _putchar(char c);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
@@ -18,3 +22,11 @@ int _isupper(int c);
 int _abs(int n);
 void _puts(char *s);
 char *_strcpy(char *dest, char *src);
+int add(int a, int b);
+int mul(int a, int b);
+int sub(int a, int b);
+int div(int a, int b);
+int mod(int a, int b);
+
+
+#endif /*MAIN_H*/
