@@ -27,18 +27,24 @@ void print_list(hash_node_t *head)
  */
 void hash_table_print(const hash_table_t *ht)
 {
-	int i;
+	unsigned long int i;
+	int count;
 
 	if (ht == NULL)
 		return;
+
+	count = 0;
 	printf("{");
 	for (i = 0; i < ht->size; i++)
 	{
-		print_list((ht->array)[i]);
-		if (i == (ht->size - 1))
-			printf("}");
-		printf(", ");
+		if (ht->array[i] == NULL)
+			continue;
+
+		if (count != 0)
+			printf(", ");
+		print_list(ht->array[i]);
+		count++;
 	}
-	printf("\n");
+	printf("}\n");
 }
 

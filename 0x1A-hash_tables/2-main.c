@@ -1,6 +1,6 @@
 #include <string.h>
 #include <stdio.h>
-#include <stdlilb.h>
+#include <stdlib.h>
 #include "hash_tables.h"
 
 int main(void)

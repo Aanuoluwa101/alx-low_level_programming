@@ -10,57 +10,48 @@
  * Return: 1 on success, 0 otherwise
  */
 
- int hash_table_set(hash_table_t *ht, const char *key, const char *value)
- {
-	 hash_node_t *node;
-
-	 if(strcmp(key, "") == 0)
-		 return (0);
-
-	 index = key_index(key, ht->size);
-
-	 if ((ht->array)[index] == NULL)
-	 {
-	 	node = create_hash_node_t(key, value);
-	 	if (node == NULL)
-			return (0);
-	 	add_hash_node_t(node, (ht->array)[index]);
-		return (1);
-	 }
-
-	 node = search((ht->array)[index]);
-	 node->value = value;
-
-	 return (1);
-}
-
-/**
- * add_hash_node_t - adds a node to the begining of a hash_node_t list
- * @node: the node to be added
- * @head: the head of the hash_node_t list
- *
- */
-void add_hash_node_t(hash_node_t *node, hash_node_t *head)
+int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	if (head == NULL)
+	hash_node_t *node;
+	unsigned long int  index;
+
+	if (ht == NULL)
+		return (0);
+	if (key == NULL || strcmp(key, "") == 0)
+		return (0);
+
+	index = key_index((const unsigned char *)key, ht->size);
+	if (ht->array[index] == NULL)
 	{
-		node->next = NULL;
-		head = node;
+		node = add_node(key, value, &ht->array[index]);
+		if (node == NULL)
+			return (0);
+		return (1);
 	}
 
-	node->next = head;
-	head = node;
+	node = search(ht->array[index], key);
+	if (node == NULL)
+	{
+		node = add_node(key, value, &ht->array[index]);
+		if (node == NULL)
+			return (0);
+		return (1);
+	}
+
+	free(node->value);
+	node->value = strdup(value);
+	return (1);
 }
 
 /**
- * create_hash_node_t - creates a hash_node_t node
- * @key: The key
- * @value: The value
+ * add_node - adds a node to the begining of a hash_node_t list
+ * @key: the key
+ * @value: teh value associated with the key
+ * @head: the head of the hash_node_t list
  *
- * Return: the address of the node created
- * or NULL on failure
+ * Return: address of added node or NULL on failure
  */
-hash_node_t *create_hash_node_t(char *key, char *value)
+hash_node_t *add_node(const char *key, const char *value, hash_node_t **head)
 {
 	hash_node_t *new_node;
 
@@ -68,8 +59,18 @@ hash_node_t *create_hash_node_t(char *key, char *value)
 	if (new_node == NULL)
 		return (NULL);
 
-	new_node->key = key;
-	new_node->value = value;
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+
+	if (*head == NULL)
+	{
+		new_node->next = NULL;
+		*head = new_node;
+		return (new_node);
+	}
+
+	new_node->next = *head;
+	*head = new_node;
 
 	return (new_node);
 }
@@ -83,7 +84,7 @@ hash_node_t *create_hash_node_t(char *key, char *value)
  * Return: the value paired with the key
  * NULL if the key could not be found
  */
-hash_node_t *search(hash_node_t *head, char *key)
+hash_node_t *search(hash_node_t *head, const char *key)
 {
 	hash_node_t *temp;
 
